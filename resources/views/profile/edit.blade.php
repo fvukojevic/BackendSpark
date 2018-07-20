@@ -6,7 +6,7 @@
         <h1>Edit Profile</h1>
     </div>
     <div class="card-body">
-      {!! Form::open(['action' => ['ProfilesController@update', auth()->user()->id] , 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+      {!! Form::open(['route' => ['profile.update', auth()->user()->id] , 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
         <div class="form-group">
           {{Form::label('name','Name')}}
           {{Form::text('name',auth()->user()->name,['class'=>'form-control'])}}

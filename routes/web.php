@@ -20,7 +20,7 @@ Route::resource('articles', 'ArticlesController');
 Route::get('/categories/{id}', 'CategoriesController@show');
 
 Route::resource('profile', 'ProfilesController');
-Route::get('/profile/reset/{id}/edit', 'ProfilesController@reset');
+Route::get('/profile/reset/{id}/edit', 'ProfilesController@reset')->name("profile.pwupdate");
 Route::put('/profile/reset/{id}', 'ProfilesController@pwdupdate');
 Route::get('/orders', 'ProfilesController@orders');
 Route::get('/shoppingCart', 'ArticlesController@getCart');

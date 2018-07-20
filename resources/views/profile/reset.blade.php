@@ -6,7 +6,7 @@
       <h1>Promijenite lozinku</h1>
     </div>
     <div class="card-body">
-      {!! Form::open(['action' => ['ProfilesController@pwdupdate', auth()->user()->id] , 'method' => 'POST']) !!}
+      {!! Form::open(['route' => ['profile.pwupdate', auth()->user()->id] , 'method' => 'POST']) !!}
         <div class="form-group">
           {{Form::label('oldpwd','Old Password')}}
           {{Form::password('oldpwd',['class' => 'form-control'])}}

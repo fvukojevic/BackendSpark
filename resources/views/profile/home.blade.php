@@ -27,7 +27,7 @@
                         <tr>
                           <td>{{$article->name}}</td>
                           <td><a href="/webshop/public/articles/{{$article->id}}/edit" class="btn btn-success" style="float:right;">Uredi Artikl</a></td>
-                          <td>    {{ Form::open(['action' => ['ArticlesController@destroy', $article->id], 'method' => "POST"]) }}
+                          <td>    {{ Form::open(['route' => ['articles.destroy', $article->id], 'method' => "POST"]) }}
                               {{Form::hidden('_method','DELETE')}}
                               {{Form::submit('Obriši artikl',['class' => 'btn btn-danger', 'style' => 'float:right;','onclick' => "if(!confirm('Are you sure delete this record?')){return false;};"])}}
                               {{ Form::close() }}</td>
@@ -56,7 +56,7 @@
                           @if($user->role!=='admin')
                           <td>{{$user->name}}</td>
                           <td>{{$user->email}}</td>
-                          <td>{{ Form::open(['action' => ['ProfilesController@destroy', $user->id], 'method' => "POST"]) }}
+                          <td>{{ Form::open(['route' => ['profile.destroy', $user->id], 'method' => "POST"]) }}
                               {{Form::hidden('_method','DELETE')}}
                               {{Form::submit('Obriši korisnika',['class' => 'btn btn-danger', 'style' => 'float:right;','onclick' => "if(!confirm('Are you sure delete this record?')){return false;};"])}}
                               {{ Form::close() }}</td>
