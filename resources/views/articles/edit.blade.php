@@ -8,7 +8,7 @@
       </div>
     @else
       <h1 style="margin-top:5%">Napravi novi artikl</h1>
-          {{ Form::open(['action' => ['ArticlesController@update', $article->id], 'method' => "POST", 'enctype' =>'multipart/form-data']) }}
+          {{ Form::open(['route' => ['articles.update', $article->id], 'method' => "POST", 'enctype' =>'multipart/form-data']) }}
       <div class="form-group">
         {{Form::label('title','Naslov')}}
         {{Form::text('name',$article->name,['class' => 'form-control', 'placeholder' =>'Naslov'])}}

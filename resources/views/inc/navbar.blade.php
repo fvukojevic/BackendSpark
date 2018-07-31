@@ -10,16 +10,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
               <li class="nav-item">
-                <a class="nav-link" href="/webshop/public/">Početna <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{ route('pages.index') }}">Početna <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/webshop/public/about">O nama</a>
+                <a class="nav-link" href="{{ route('pages.about') }}">O nama</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/webshop/public/services">Usluge</a>
+                <a class="nav-link" href="{{ route('pages.services') }}">Usluge</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/webshop/public/articles">Artikli</a>
+                <a class="nav-link" href="{{ route('articles.index') }}">Artikli</a>
               </li>
             </ul>
             <!-- Right Side Of Navbar -->
@@ -36,11 +36,11 @@
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                           @if(Auth::user()->role == 'admin')
-                            <a class="dropdown-item" style="text-decoration:none;"href="/webshop/public/home">Admin Panel</a>
+                            <a class="dropdown-item" style="text-decoration:none;"href="{{ route('home') }}">Admin Panel</a>
                           @endif
-                            <a class="dropdown-item" style="text-decoration:none;"href="/webshop/public/profile/">Moj Profil</a>
-                            <a class="dropdown-item" style="text-decoration:none;"href="/webshop/public/orders">Moje Narudžbe</a>
-                            <a class="dropdown-item" style="text-decoration:none;"href="/webshop/public/shoppingCart"><i class="fas fa-shopping-cart"></i> Košarica <span class="badge">{{Session::has('cart') ? Session::get('cart')->totalQty : ''}}</span></a>
+                            <a class="dropdown-item" style="text-decoration:none;"href="{{ route('profile.index') }}">Moj Profil</a>
+                            <a class="dropdown-item" style="text-decoration:none;"href="{{ route('profile.orders') }}">Moje Narudžbe</a>
+                            <a class="dropdown-item" style="text-decoration:none;"href="{{ route('profile.card') }}"><i class="fas fa-shopping-cart"></i> Košarica <span class="badge">{{Session::has('cart') ? Session::get('cart')->totalQty : ''}}</span></a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">

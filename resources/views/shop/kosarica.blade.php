@@ -15,8 +15,8 @@
               <div class="btn-group">
                 <button type="button" class="btn btn-primary btn-xs dropdown-toggle" name="button" data-toggle="dropdown">Action <span class="caret"></span></button>
                 <ul class="dropdown-menu">
-                  <li><a href="/webshop/public/reduce/{{$product['item']['id']}}">Reduce by 1</a></li>
-                  <li><a href="/webshop/public/remove/{{$product['item']['id']}}">Reduce All</a></li>
+                  <li><a href="{{ route('article.reduceByOne', ['id' => $product['item']['id']]) }}">Reduce by 1</a></li>
+                  <li><a href="{{ route('article.removeItem', ['id' => $product['item']['id']]) }}">Reduce All</a></li>
                 </ul>
               </div>
              </li>
@@ -33,7 +33,7 @@
     <hr>
     <div class="row">
       <div class="col-sm-6 col-md-6 col-md-offset-3">
-        <a href="/webshop/public/shoppingCart/checkout"class="btn btn-success"name="button">Kupi</a>
+        <a href="{{route('card.checkout')}}"class="btn btn-success"name="button">Kupi</a>
       </div>
     </div>
  @else

@@ -10,7 +10,7 @@
             <div class="card">
                 <div class="card-header">
                     <strong>Artikli</strong>
-                    <a style="float:right"class="btn btn-primary"style="text-decoration:none;"href="/webshop/public/articles/create">Unesi artikl</a>
+                    <a style="float:right"class="btn btn-primary"style="text-decoration:none;"href="{{ route('articles.create')}}">Unesi artikl</a>
                     <form style="float:right;"class="form-inline my-2 my-lg-0">
                       <input id="myInput" onkeyup="myFunction()" class="form-control mr-sm-2" type="text" placeholder="Pretraga po nazivu" aria-label="Search">
                     </form>
@@ -26,7 +26,7 @@
                       @foreach($articles as $article)
                         <tr>
                           <td>{{$article->name}}</td>
-                          <td><a href="/webshop/public/articles/{{$article->id}}/edit" class="btn btn-success" style="float:right;">Uredi Artikl</a></td>
+                          <td><a href="{{ route('articles.edit', ['id' => $article->id]) }}" class="btn btn-success" style="float:right;">Uredi Artikl</a></td>
                           <td>    {{ Form::open(['route' => ['articles.destroy', $article->id], 'method' => "POST"]) }}
                               {{Form::hidden('_method','DELETE')}}
                               {{Form::submit('Obriši artikl',['class' => 'btn btn-danger', 'style' => 'float:right;','onclick' => "if(!confirm('Are you sure delete this record?')){return false;};"])}}

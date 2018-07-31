@@ -5,7 +5,7 @@
       <div class="col-sm-6 col-md-4 offset-md-4 offset-sm-3">
         <h1>Narudžba</h1>
         <h4>Vaša ukupna cijena: {{$total}} BAM</h4>
-        {{ Form::open(['action' => 'ArticlesController@storeOrder', 'method' => "POST", 'id' => 'checkout-form']) }}
+        {{ Form::open(['route' => 'articles.storeOrder', 'method' => "POST", 'id' => 'checkout-form']) }}
         <div class="row">
           <div class="col-xs-12">
             <div class="form-group">

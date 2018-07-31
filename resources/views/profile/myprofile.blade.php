@@ -13,10 +13,9 @@
         <br>
       </div>
       <div class="card-footer">
-        <a href="/webshop/public/profile/{{auth()->user()->id}}/edit" class="btn btn-default">Edit Profile</a>
-        <a class="btn btn-warning" href="/webshop/public/profile/reset/{{auth()->user()->id}}/edit">Promjena lozinke</a>
-        <a class="btn btn-danger" href="/webshop/public/profile/reset/{{auth()->user()->id}}/edit">Izbriši račun</a>
-        <a class="btn btn-success" href="/webshop/public/orders" >Moje narudžbe</a>
+        <a href="{{ route('profile.edit', ['id' => auth()->user()->id]) }}" class="btn btn-default">Edit Profile</a>
+        <a class="btn btn-warning" href="{{ route('profile.pwupdate', ['id' => auth()->user()->id]) }}">Promjena lozinke</a>
+        <a class="btn btn-success" href="{{route('profile.orders')}}" >Moje narudžbe</a>
       </div>
   </div>
 @endsection

@@ -8,7 +8,7 @@
   @if (Route::has('login'))
       <div class="top-right links">
           @auth
-              <a class="btn btn-warning btn-lg" href="/webshop/public/articles">Kreni u kupovinu!</a>
+              <a class="btn btn-warning btn-lg" href="{{ route('articles.index') }}">Kreni u kupovinu!</a>
           @else
           <a class="btn btn-success btn-lg" href="{{ route('login') }}" role="button">Login </a>
           <a class="btn btn-success btn-lg" href="{{ route('register') }}" role="button">Register</a>

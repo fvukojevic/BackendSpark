@@ -4,7 +4,7 @@
 <div class="card bg-light">
 <div class="card-header">
   <h2>{{$article->name}}</h2>
-  <small><a href="/webshop/public/categories/{{$article->category->id}}">{{$article->category->name}}</a></small>
+  <small><a href="{{route('category.show', ['id' => $article->category->id])}}">{{$article->category->name}}</a></small>
 </div>
 <div class="card-body">
   <div class="row">
@@ -19,16 +19,16 @@
 </div>
 <div class="card-footer">
   @guest
-    <a href="/webshop/public/add-to-card/{{$article->id}}" class="btn btn-success" style="float:left;">Dodaj u košaricu</a>
+    <a href="{{route('product.addToCard', ['id' => $article->id])}}" class="btn btn-success" style="float:left;">Dodaj u košaricu</a>
   @else
     @if($article->user_id == auth()->user()->id)
-    <a href="/webshop/public/articles/{{$article->id}}/edit" class="btn btn-primary" style="float:left;">Uredi Artikl</a>
+    <a href="{{ route('articles.edit', ['id' => $article->id]) }}" class="btn btn-primary" style="float:left;">Uredi Artikl</a>
     @if($article->kolicina>0)
-    <a href="/webshop/public/add-to-card/{{$article->id}}" class="btn btn-success" style="float:left; margin-left:10px;">Dodaj u košaricu</a>
+    <a href="{{route('product.addToCard', ['id' => $article->id])}}" class="btn btn-success" style="float:left; margin-left:10px;">Dodaj u košaricu</a>
     @else
     <h4 style="float:left;">Nestalo Zaliha</h4>
     @endif
-    {{ Form::open(['action' => ['ArticlesController@destroy', $article->id], 'method' => "POST"]) }}
+    {{ Form::open(['route' => ['articles.destroy', $article->id], 'method' => "POST"]) }}
     {{Form::hidden('_method','DELETE')}}
     {{Form::submit('Obriši artikl',['class' => 'btn btn-danger', 'style' => 'float:right;'])}}
     {{ Form::close() }}

@@ -9,9 +9,9 @@
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent2">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                  <li><a href="/webshop/public/articles" class="navbar-brand">Svi Artikli</a></li>
+                  <li><a href="{{ route('articles.index') }}" class="navbar-brand">Svi Artikli</a></li>
                   @foreach($categories as $category)
-                    <li><a href="/webshop/public/categories/{{$category->id}}" class="navbar-brand">{{$category->name}}</a></li>
+                    <li><a href="{{route('category.show', ['id' => $category->id])}}" class="navbar-brand">{{$category->name}}</a></li>
                   @endforeach
                 </ul>
           </div>
@@ -22,9 +22,9 @@
       <div class="card">
           <div class="card-header">
             @if($article->category_id != null)
-             <small>Kategorija: <a href="/webshop/public/categories/{{$article->category->id}}">{{$article->category->name}}</a></small>
+             <small>Kategorija: <a href="{{route('category.show', ['id' => $article->category->id])}}">{{$article->category->name}}</a></small>
             @endif
-             <h3><a href="/webshop/public/articles/{{$article->id}}">{{$article->name}}</a></h3>
+             <h3><a href="{{ route('articles.show', ['id' => $article->id]) }}">{{$article->name}}</a></h3>
           </div>
           <div class="card-body">
             <div class="row">
@@ -41,7 +41,7 @@
           <div class="card-footer">
             <p style="float:left;"><strong>Iznos:{{$article->cijena}} BAM</strong></p>
             @if($article->kolicina>0)
-            <a href="/webshop/public/add-to-card/{{$article->id}}" class="btn btn-success" style="float:right;">Dodaj u Košaricu</a>
+            <a href="{{route('product.addToCard', ['id' => $article->id])}}" class="btn btn-success" style="float:right;">Dodaj u Košaricu</a>
             @else
             <h4 style="float:right;">Nestalo Zaliha</h4>
             @endif
