@@ -21,7 +21,7 @@ Route::get('/categories/{id}', 'CategoriesController@show')->name("category.show
 
 Route::resource('profile', 'ProfilesController');
 Route::get('/profile/reset/{id}/edit', 'ProfilesController@reset')->name("profile.pwupdate");
-Route::put('/profile/reset/{id}', 'ProfilesController@pwdupdate');
+Route::put('/profile/reset/{id}', 'ProfilesController@pwdupdate')->name("profile.newPw");
 Route::get('/orders', 'ProfilesController@orders')->name("profile.orders");
 Route::get('/shoppingCart', 'ArticlesController@getCart')->name("profile.card");
 
