@@ -34,7 +34,7 @@
     {{ Form::close() }}
     @else
       @if($article->kolicina>0)
-      <a href="/webshop/public/add-to-card/{{$article->id}}" class="btn btn-success" style="float:left; margin-left:10px;">Dodaj u košaricu</a>
+      <a href="{{route('product.addToCard', ['id' => $article->id])}}" class="btn btn-success" style="float:left; margin-left:10px;">Dodaj u košaricu</a>
       @else
       <h4 style="float:left;">Nestalo Zaliha</h4>
       @endif
