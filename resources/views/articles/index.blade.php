@@ -29,7 +29,7 @@
           <div class="card-body">
             <div class="row">
               <div class="col-md-3 col-sm-3">
-                <img style="width:250px; height:150px;" src="/webshop/public/storage/slike/{{$article->slika}}" alt="">
+                <img style="width:250px; height:150px;" src="{{url('/storage/slike')}}/{{$article->slika}}" alt="">
               </div>
               <div class="col-md-9 col-sm-9">
                 <h4>{{$article->opis}}</h4>
