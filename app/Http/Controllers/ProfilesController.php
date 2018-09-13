@@ -33,8 +33,7 @@ class ProfilesController extends Controller
     }
 
     public function eOrders(Request $request){
-      return $request;
-      $orders = Order::all()->where('user_id', $id);
+      $orders = Order::all()->where('user_id', $request->user()->id);
       $orders->transform(function($order,$key){
         $order->cart = unserialize($order->cart);
         return $order;
@@ -64,7 +63,7 @@ class ProfilesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
     /**
      * Display the specified resource.

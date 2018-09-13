@@ -34,6 +34,10 @@ class CategoriesController extends Controller
         return view('articles.index')->with('articles',$articles)->with('categories',$categories);
     }
 
+    public function eIndex(){
+      return Category::all();
+    }
+
     public function eShow($id)
     {
       $articles= Article::orderBy('created_at','desc')->where('category_id', $id)->paginate(5);

@@ -113,6 +113,8 @@ class ArticlesController extends Controller
     return redirect('/articles')->with('success', 'Artikl spremljen');
     }
 
+
+
     public function eStore(Request $request, $id)
     {
       $this->validate($request,[
@@ -223,6 +225,27 @@ class ArticlesController extends Controller
 
         Session::forget('cart');
         return redirect('/articles')->with('success', 'Narudžba pohranjena');
+    }
+
+    public function storeOrderApi(Request $request){
+      $this->validate($request,[
+        'name'=>'required',
+        'address'=>'required',
+        'card_number'=>'required',
+        'expiration_month'=>'required',
+        'expiration_year' => 'required',
+        'CVC' => 'required'
+      ]);
+
+
+      $order = new Order();
+      $order->cart = serialize("asdsad");
+      $order->name = $request->input('name');
+      $order->address = $request->input('address');
+      $order->user_id = $request->user()->id;
+      $order->save();
+
+      return $order;
     }
     /**
      * Update the specified resource in storage.

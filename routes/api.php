@@ -33,18 +33,23 @@ Route::group([
     });
 });
 
-//Articles routes
-Route::get('articles', 'ArticlesController@eIndex');
-Route::get('articles/{id}', 'ArticlesController@eShow');
-Route::post('articles/{id}', 'ArticlesController@eStore');
 
+Route::group([
+  'middleware' => 'auth:api'
+], function() {
+  //Profile Routes
+  Route::put('profile', 'ProfilesController@eUpdate');
+
+  //narudzbe
+  Route::get('orders', 'ProfilesController@eOrders');
+  Route::post('orders', 'ArticlesController@storeOrderApi');
+});
 
 //Categories routes
 Route::get('categories/{id}','CategoriesController@eShow');
 
-
-//Profile Routes
-Route::put('profile/{id}', 'ProfilesController@eUpdate');
-
-//narudzbe
-Route::get('orders', 'ProfilesController@eOrders');
+//Articles routes
+Route::get('articles', 'ArticlesController@eIndex');
+Route::get('categories', 'CategoriesController@eIndex');
+Route::get('articles/{id}', 'ArticlesController@eShow');
+Route::post('articles/{id}', 'ArticlesController@eStore');
