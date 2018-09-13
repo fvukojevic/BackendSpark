@@ -34,6 +34,13 @@ class CategoriesController extends Controller
         return view('articles.index')->with('articles',$articles)->with('categories',$categories);
     }
 
+    public function eShow($id)
+    {
+      $articles= Article::orderBy('created_at','desc')->where('category_id', $id)->paginate(5);
+
+      return $articles;
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

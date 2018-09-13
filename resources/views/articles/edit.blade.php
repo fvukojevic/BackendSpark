@@ -7,7 +7,7 @@
         <a href="{{ route('login') }}" class="btn btn-primary" style="margin-left:50%;">Login</a>
       </div>
     @else
-      <h1 style="margin-top:5%">Napravi novi artikl</h1>
+      <h1 style="margin-top:5%">Uredi artikl</h1>
           {{ Form::open(['route' => ['articles.update', $article->id], 'method' => "POST", 'enctype' =>'multipart/form-data']) }}
       <div class="form-group">
         {{Form::label('title','Naslov')}}

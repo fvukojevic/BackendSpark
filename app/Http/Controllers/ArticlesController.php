@@ -22,7 +22,7 @@ class ArticlesController extends Controller
 
     public function __construct()
     {
-       $this->middleware('auth',['except' => ['index','show']]);
+       $this->middleware('auth',['except' => ['index','show','eIndex','eShow','eStore']]);
     }
 
     public function index()
@@ -30,6 +30,11 @@ class ArticlesController extends Controller
         $articles = Article::orderBy('created_at','desc')->paginate(5);
         $categories = Category::all();
         return view('articles.index')->with('articles',$articles)->with('categories',$categories);
+    }
+
+    public function eIndex()
+    {
+        return Article::all();
     }
 
     public function getCart()
@@ -108,6 +113,47 @@ class ArticlesController extends Controller
     return redirect('/articles')->with('success', 'Artikl spremljen');
     }
 
+    public function eStore(Request $request, $id)
+    {
+      $this->validate($request,[
+      'name'          =>'required',
+      'cijena'        =>'required',
+      'kolicina'      =>'required',
+      'category_id'   =>'required|integer',
+      'opis'          =>'required',
+      'slika'         => 'image|nullable|max:1999'
+    ]);
+
+    //Za sliku
+    if($request->hasFile('slika'))
+    {
+      //Dohvaćanje filename-a sa extenzijom
+      $fileNameWithExt = $request->file('slika')->getClientOriginalName();
+      //Dohvati samo $fileName
+      $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+      //dohvati samo ekstenziju
+      $extension = $request->file('slika')->getClientOriginalExtension();
+      //Ime za pohranu
+      $fileNameToStore = $filename.'_'.time().'.'.$extension;
+      //Upload slike
+      $path = $request->file('slika')->storeAs('public/slike',$fileNameToStore);
+    }else{
+      $fileNameToStore = 'noimage.jpg';
+    }
+
+    $article = new Article;
+    $article->name = $request->input('name');
+    $article->cijena = $request->input('cijena');
+    $article->kolicina = $request->input('kolicina');
+    $article->category_id = $request->category_id;
+    $article->opis = $request->input('opis');
+    $article->user_id = $id;
+    $article->slika = $fileNameToStore;
+    $article->save();
+
+    return "success";
+    }
+
     /**
      * Display the specified resource.
      *
@@ -118,6 +164,11 @@ class ArticlesController extends Controller
     {
         $article = Article::find($id);
         return view('articles.show')->with('article',$article);
+    }
+
+    public function eShow($id)
+    {
+      return Article::find($id);
     }
 
     /**

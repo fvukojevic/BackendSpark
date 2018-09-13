@@ -7,6 +7,10 @@
       </div>
       <div class="card-body">
         <br>
+        <div class="col-md-3 col-sm-3">
+          <img style="width:250px; height:150px;" src="{{url('/storage/slike')}}/{{auth()->user()->slika}}" alt="">
+        </div>
+        <br>
         <h3><strong>Name : </strong>{{auth()->user()->name}}</h3>
         <br>
         <h3><strong>Email : </strong>{{auth()->user()->email}}</h3>

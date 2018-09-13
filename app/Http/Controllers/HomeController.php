@@ -26,8 +26,6 @@ class HomeController extends Controller
     {
         //dohvacamo sve korisnike
         $users = User::all();
-
-
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
         if($user->role == 'admin')

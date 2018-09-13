@@ -7,6 +7,7 @@ use App\User;
 use DB;
 use Illuminate\Support\Facades\Hash;
 use App\Cart;
+use App\Order;
 use Session;
 use Auth;
 
@@ -29,6 +30,16 @@ class ProfilesController extends Controller
         return $order;
       });
       return view('profile.orders')->with('orders', $orders);
+    }
+
+    public function eOrders(Request $request){
+      return $request;
+      $orders = Order::all()->where('user_id', $id);
+      $orders->transform(function($order,$key){
+        $order->cart = unserialize($order->cart);
+        return $order;
+      });
+      return $orders;
     }
 
     public function reset($id)
@@ -92,9 +103,26 @@ class ProfilesController extends Controller
        'email' => 'required',
     ]);
 
+    if($request->hasFile('slika'))
+    {
+      //Dohvaćanje filename-a sa extenzijom
+      $fileNameWithExt = $request->file('slika')->getClientOriginalName();
+      //Dohvati samo $fileName
+      $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+      //dohvati samo ekstenziju
+      $extension = $request->file('slika')->getClientOriginalExtension();
+      //Ime za pohranu
+      $fileNameToStore = $filename.'_'.time().'.'.$extension;
+      //Upload slike
+      $path = $request->file('slika')->storeAs('public/slike',$fileNameToStore);
+    }
+
     $user = User::find($id);
     $user->name = $request->input('name');
     $user->email = $request->input('email');
+    if($request->hasFile('slika')){
+      $user->slika=$fileNameToStore;
+    }
     $user->save();
 
     return redirect('/profile')->with('success', 'Profile Updated');

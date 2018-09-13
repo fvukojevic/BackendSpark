@@ -15,11 +15,13 @@
           {{Form::label('email','Email')}}
           {{Form::text('email',auth()->user()->email,['class'=>'form-control'])}}
         </div>
+        {{Form::file('slika')}}
+      </div>
     </div>
     <div class="card-footer">
       {{Form::hidden('_method','PUT')}}
-      {{Form::submit('Save changes',['class' =>'btn btn-primary'])}}
-      {!! Form::close() !!}
+      {{Form::submit('Update',['class' => 'btn btn-primary'])}}
+      {{ Form::close() }}
     </div>
   </div>
 @endsection
