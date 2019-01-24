@@ -46,6 +46,25 @@ class CategoriesController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+      $this->validate($request,[
+      'name' =>'required',
+    ]);
+
+
+    $category = new Category;
+    $category->name = $request->input('name');
+    $category->save();
+
+    return back()->with('success', 'Kategorija dodana');
+    }
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -76,6 +95,9 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $category = Category::find($id);
+      $category->delete();
+
+      return back();
     }
 }

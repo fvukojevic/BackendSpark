@@ -17,8 +17,15 @@
           </div>
       </div>
   </nav>
+  <?php
+  $numOfCols = 2;
+  $rowCount = 0;
+  ?>
   @if(count($articles)>0)
+      <div class="row">
     @foreach($articles as $article)
+        <div class="col-sm-6">
+            <br>
       <div class="card">
           <div class="card-header">
             @if($article->category_id != null)
@@ -28,10 +35,10 @@
           </div>
           <div class="card-body">
             <div class="row">
-              <div class="col-md-3 col-sm-3">
-                <img style="width:250px; height:150px;" src="{{url('/storage/slike')}}/{{$article->slika}}" alt="">
+              <div class="col-sm-12">
+                <img class="img-responsive" style="max-width:150px; max-height:150px;" src="{{url('/storage/slike')}}/{{$article->slika}}" alt="">
               </div>
-              <div class="col-md-9 col-sm-9">
+              <div class="col-sm-12">
                 <h4>{{$article->opis}}</h4>
                 <br>
                 <small>Datum objave: {{$article->created_at}} autor: {{$article->user->name}}</small>
@@ -47,8 +54,13 @@
             @endif
           </div>
       </div>
+        </div>
+          <?php
+    $rowCount++;
+    if($rowCount % $numOfCols == 0) echo '</div><div class="row">';
+?>
     @endforeach
-
+      </div>
   @endif
 
   <div class="text-center">

@@ -18,6 +18,8 @@ Route::get('/services', 'PagesController@services')->name("pages.services");
 
 Route::resource('articles', 'ArticlesController');
 Route::get('/categories/{id}', 'CategoriesController@show')->name("category.show");
+Route::post('/categories/store', 'CategoriesController@store') ->name('category.store');
+Route::delete('/categories/{id}', 'CategoriesController@destroy') ->name('category.destroy');
 
 Route::resource('profile', 'ProfilesController');
 Route::get('/profile/reset/{id}/edit', 'ProfilesController@reset')->name("profile.pwupdate");
@@ -42,4 +44,22 @@ Route::post('/shoppingCart/checkout','ArticlesController@storeOrder')->name("art
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'AdminController@index')->name('home');
+
+Route::get('/admin/users', 'AdminController@users');
+Route::get('/admin/posts', 'AdminController@posts')->name('admin.posts');
+Route::get('/admin/users/edit/{id}', 'AdminController@editUser');
+Route::patch('/admin/users/edit/{id}', 'UserController@update');
+Route::put('/admin/users/edit/{id}', 'UserController@password');
+Route::get('/admin/users/delete/{id}', 'UserController@destroy');
+
+Route::get('/admin/post/edit/{id}', 'AdminController@edit');
+Route::get('/admin/posts/add', 'AdminController@addpost');
+Route::get('/admin/categories/add', 'AdminController@addcategory');
+
+Route::post('/reminder/create', 'ReminderController@store');
+Route::get('/reminder/edit/{id}', 'ReminderController@edit');
+Route::get('/reminder/delete/{id}', 'ReminderController@destroy');
+Route::patch('/reminder/update/{id}', 'ReminderController@update');
+
+Route::get('/admin/theme', 'AdminController@theme');

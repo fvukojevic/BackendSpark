@@ -23,7 +23,7 @@
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 
 </head>
-<body>
+<body style="background-color:gray">
         @include('inc.navbar')
         <div class="container" style="margin-top:2%;">
             @include('inc.messages')

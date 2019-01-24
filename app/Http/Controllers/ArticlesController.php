@@ -27,7 +27,7 @@ class ArticlesController extends Controller
 
     public function index()
     {
-        $articles = Article::orderBy('created_at','desc')->paginate(5);
+        $articles = Article::orderBy('created_at','desc')->paginate(6);
         $categories = Category::all();
         return view('articles.index')->with('articles',$articles)->with('categories',$categories);
     }
@@ -282,6 +282,7 @@ class ArticlesController extends Controller
       $article->name = $request->input('name');
       $article->cijena = $request->input('cijena');
       $article->kolicina = $request->input('kolicina');
+      $article->category_id = $request->input('category_id');
       $article->opis = $request->input('opis');
       if($request->hasFile('slika')){
         $article->slika=$fileNameToStore;

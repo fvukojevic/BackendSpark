@@ -3,7 +3,7 @@
 @section('content')
   <div class="card">
       <div class="card-header">
-          <h1>Welcome to the profile page of <strong>{{auth()->user()->username}}</strong></h1>
+          <h3>Welcome to the profile page of <strong>{{auth()->user()->username}}</strong></h3>
       </div>
       <div class="card-body">
         <br>
